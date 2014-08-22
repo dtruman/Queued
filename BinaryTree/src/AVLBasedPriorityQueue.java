@@ -2,6 +2,7 @@
 public class AVLBasedPriorityQueue<T extends Comparable<T>>
 {
 	Node root;
+	public int size=0;
 	private class Node
 	{
 		Node less, greater;
@@ -15,6 +16,7 @@ public class AVLBasedPriorityQueue<T extends Comparable<T>>
 	
 	public boolean offer(T data)
 	{	
+		size++;
 		if(root==null)
 		{
 			root=new Node(data);
@@ -26,7 +28,7 @@ public class AVLBasedPriorityQueue<T extends Comparable<T>>
 	
 	private boolean offerHelp(T data, Node node)
 	{
-		if(node.data.compareTo(data)<0)
+		if(node.data.compareTo(data)<=0)
 		{
 			if(node.greater==null)
 			{
@@ -73,6 +75,7 @@ public class AVLBasedPriorityQueue<T extends Comparable<T>>
 	
 	public T poll()
 	{
+		size--;
 		return inOrder(null, root);
 	}
 	
